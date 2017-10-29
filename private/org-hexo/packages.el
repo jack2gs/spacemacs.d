@@ -30,7 +30,9 @@
 ;;; Code:
 
 (defconst org-hexo-packages
-  '()
+  '(
+    blog-admin
+    )
   "The list of Lisp packages required by the org-hexo layer.
 
 Each entry is either:
@@ -57,28 +59,27 @@ Each entry is either:
 
       - A list beginning with the symbol `recipe' is a melpa
         recipe.  See: https://github.com/milkypostman/melpa#recipe-format")
-(defun org-hexo/init-blog-admin()
+
+(defun org-hexo/init-blog-admin ()
   "Initialize blog-admin"
   (use-package blog-admin
-	       :defer t
-	       :commands blog-admin-start
-	       :init
-	       ;; Keybinding
-	       (spacemacs/set-leader-keys "ab" 'blog-admin-start)
-	       :config
-	       (progn
-		 ;; Open post after create new post
-		 (add-hook 'blog-admin-backend-after-new-post-hook 'find-file)
-		 ;; Hexo
-		 (setq blog-admin-backend-path "~/blog")
-		 (setq blog-admin-backend-type 'hexo)
-		 ;; create new post in drafts by default
-		 (setq blog-admin-backend-new-post-in-drafts t)
-		 ;; create same-name directory with new post
-		 (setq blog-admin-backend-new-post-with-same-name-dir t)
-		 ;; default assumes _config.yml
-		 (setq blog-admin-backend-hexo-config-file "_config.yml")
-	       )
+    :defer t
+    :commands blog-admin-start
+    :init
+    ;; Keybinding
+    (spacemacs/set-leader-keys "ab" 'blog-admin-start)
+    :config
+    (progn
+      ;; Hexo
+      (setq blog-admin-backend-path "~/WorkStation/blog/jack2gs.github.io/")
+      (setq blog-admin-backend-type 'hexo)
+      ;; create new post in drafts by default
+      (setq blog-admin-backend-new-post-in-drafts t)
+      ;; create same-name directory with new post
+      (setq blog-admin-backend-new-post-with-same-name-dir t)
+      ;; default assumes _config.yml
+      (setq blog-admin-backend-hexo-config-file "_config.yml"))
+      (add-hook 'blog-admin-backend-after-new-post-hook 'find-file) ;; Open post after create new post
+    )
   )
-)
 ;;; packages.el ends here
