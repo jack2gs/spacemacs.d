@@ -1,4 +1,4 @@
-;;; packages.el --- org-hexo layer packages file for Spacemacs.
+;;; packages.el --- melon-blog layer packages file for Spacemacs.
 ;;
 ;; Copyright (c) 2012-2017 Sylvain Benner & Contributors
 ;;
@@ -18,22 +18,22 @@
 ;;
 ;;
 ;; Briefly, each package to be installed or configured by this layer should be
-;; added to `org-hexo-packages'. Then, for each package PACKAGE:
+;; added to `melon-blog-packages'. Then, for each package PACKAGE:
 ;;
 ;; - If PACKAGE is not referenced by any other Spacemacs layer, define a
-;;   function `org-hexo/init-PACKAGE' to load and initialize the package.
+;;   function `melon-blog/init-PACKAGE' to load and initialize the package.
 
 ;; - Otherwise, PACKAGE is already referenced by another Spacemacs layer, so
-;;   define the functions `org-hexo/pre-init-PACKAGE' and/or
-;;   `org-hexo/post-init-PACKAGE' to customize the package as it is loaded.
+;;   define the functions `melon-blog/pre-init-PACKAGE' and/or
+;;   `melon-blog/post-init-PACKAGE' to customize the package as it is loaded.
 
 ;;; Code:
 
-(defconst org-hexo-packages
+(defconst melon-blog-packages
   '(
     blog-admin
     )
-  "The list of Lisp packages required by the org-hexo layer.
+  "The list of Lisp packages required by the melon-blog layer.
 
 Each entry is either:
 
@@ -59,8 +59,7 @@ Each entry is either:
 
       - A list beginning with the symbol `recipe' is a melpa
         recipe.  See: https://github.com/milkypostman/melpa#recipe-format")
-
-(defun org-hexo/init-blog-admin ()
+(defun melon-blog/init-blog-admin ()
   "Initialize blog-admin"
   (use-package blog-admin
     :defer t
@@ -79,7 +78,7 @@ Each entry is either:
       (setq blog-admin-backend-new-post-with-same-name-dir t)
       ;; default assumes _config.yml
       (setq blog-admin-backend-hexo-config-file "_config.yml"))
-      (add-hook 'blog-admin-backend-after-new-post-hook 'find-file) ;; Open post after create new post
+    (add-hook 'blog-admin-backend-after-new-post-hook 'find-file) ;; Open post after create new post
     )
   )
 ;;; packages.el ends here
