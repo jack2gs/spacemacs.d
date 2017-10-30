@@ -11,3 +11,16 @@
     (set-fontset-font (frame-parameter nil 'font)
                       charset
                       (font-spec :family cfont :size cfont-size))))
+(defun melon-osx/set-default-font ()
+    (melon-osx/set-font "Source Code Pro" 13 "Microsoft Yahei" 16)
+    )
+
+(defun melon-osx/private-set-font ()
+  (add-to-list 'after-make-frame-functions
+               (lambda (new-frame)
+                 (select-frame new-frame)
+                 (if window-system
+                     (melon-osx/set-default-font))))
+  (if window-system
+      (melon-osx/set-default-font))
+  )

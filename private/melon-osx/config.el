@@ -1,5 +1,4 @@
 ;; setting the font
-(melon-osx/set-font "Source Code Pro"
-                    13
-                    "Microsoft Yahei"
-                    16)
+;; default is Source Code Pro 13
+;; for Chinese, Microsoft Yahei 16
+(melon-osx/private-set-font)
