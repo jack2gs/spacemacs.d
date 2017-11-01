@@ -24,3 +24,10 @@
   (if window-system
       (melon-osx/set-default-font))
   )
+
+;; disable terminal theme
+(defun on-after-init ()
+  "Disable terminal theme."
+  (unless (display-graphic-p (selected-frame))
+    (set-face-background 'default "unspecified-bg" (selected-frame))))
+

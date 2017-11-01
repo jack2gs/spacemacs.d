@@ -30,7 +30,9 @@
 ;;; Code:
 
 (defconst melon-osx-packages
-  '()
+  '(
+    exec-path-from-shell
+    )
   "The list of Lisp packages required by the melon-osx layer.
 
 Each entry is either:
@@ -58,5 +60,17 @@ Each entry is either:
       - A list beginning with the symbol `recipe' is a melpa
         recipe.  See: https://github.com/milkypostman/melpa#recipe-format")
 
-
+(defun melon-osx/init-exec-path-from-shell ()
+  "Initialize exec-path-from-shell"
+  (use-package exec-path-from-shell
+    :defer t
+    :init
+    ;; config
+    :config
+    (progn
+      (when (memq window-system '(mac ns x))
+        (exe-path-from-shell-initialize))
+      )
+    )
+)
 ;;; packages.el ends here
