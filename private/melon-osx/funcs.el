@@ -26,7 +26,7 @@
   )
 
 ;; disable terminal theme
-(defun on-after-init ()
+(defun melon-osx/on-after-init ()
   "Disable terminal theme."
   (unless (display-graphic-p (selected-frame))
     (set-face-background 'default "unspecified-bg" (selected-frame))))

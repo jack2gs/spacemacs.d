@@ -32,6 +32,7 @@
 (defconst melon-blog-packages
   '(
     blog-admin
+    org
     )
   "The list of Lisp packages required by the melon-blog layer.
 
@@ -81,12 +82,13 @@ Each entry is either:
     (add-hook 'blog-admin-backend-after-new-post-hook 'find-file) ;; Open post after create new post
     )
   )
-(defun melon-blog/init-ox-latex ()
-  (use-package ox-latex
-    :defer
+(defun melon-blog/init-org ()
+  (use-package org 
     :init
+    :config
     ;; set latex
-(progn
+    (progn
+      (require 'ox-latex)
   (setq org-latex-compiler "xelatex")
   (add-to-list 'org-latex-classes
              '("cn-article"
@@ -172,6 +174,14 @@ marginparsep=7pt, marginparwidth=.6in}
       '("xelatex -8bit -shell-escape -interaction nonstopmode -output-directory %o %f"))
 
 )
+;; for literate programming
+;; you need to install htmlize.el first.
+;; syntax highlight your code
+;; removes the annoying "Do you want to execute" your code when you type: C-c C-c
+(setq org-confirm-babel-evaluate nil
+      org-src-fontify-natively t
+      org-src-tab-acts-natively t)
+
 )
 )
 ;;; packages.el ends here

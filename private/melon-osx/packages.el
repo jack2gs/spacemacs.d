@@ -32,6 +32,7 @@
 (defconst melon-osx-packages
   '(
     exec-path-from-shell
+    org
     )
   "The list of Lisp packages required by the melon-osx layer.
 
@@ -63,14 +64,37 @@ Each entry is either:
 (defun melon-osx/init-exec-path-from-shell ()
   "Initialize exec-path-from-shell"
   (use-package exec-path-from-shell
-    :defer t
     :init
     ;; config
     :config
     (progn
       (when (memq window-system '(mac ns x))
-        (exe-path-from-shell-initialize))
+        (exec-path-from-shell-initialize))
       )
     )
 )
+
+(defun melon-osx/init-org ()
+  "Initilize org"
+  (use-package org
+	       :init
+s	       ;; config
+	       (progn
+		 ;; active org-babel languages
+		 (org-babel-do-load-languages
+		  'org-babel-load-languages
+		  '((js         . t)
+		    (emacs-lisp . t)
+		    (perl       . t)
+		    (scala      . t)
+		    (clojure    . t)
+		    (python     . t)
+		    (ruby       . t)
+		    (dot        . t)
+		    (ditaa      . t)
+		    (latex      . t)
+		    (java       . t)
+		    (R          . t)
+		    (plantuml   . t)))
+)))
 ;;; packages.el ends here
