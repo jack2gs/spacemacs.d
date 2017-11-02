@@ -33,6 +33,7 @@
   '(
     exec-path-from-shell
     org
+    yasnippet
     )
   "The list of Lisp packages required by the melon-osx layer.
 
@@ -97,4 +98,12 @@ s	       ;; config
 		    (R          . t)
 		    (plantuml   . t)))
 )))
+
+(defun melon-osx/init-yasnippet ()
+  "Initialize yasnippet"
+    (use-package yasnippet
+      :config
+      (add-to-list
+       'yas-snippet-dirs "~/.spacemacs.d/snippets"))
+      (yas-global-mode 1))
 ;;; packages.el ends here

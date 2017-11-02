@@ -38,6 +38,15 @@ values."
      ;; ----------------------------------------------------------------
      ivy
      ;; auto-completion
+     (auto-completion :variables
+                      auto-completion-return-key-behavior 'complete
+                      auto-completion-tab-key-behavior 'cycle
+                      auto-completion-complete-with-key-sequence nil
+                      auto-completion-complete-with-key-sequence-delay 0.1
+                      auto-completion-enable-snippets-in-popup t
+                      auto-completion-enable-sort-by-usage t
+                      auto-completion-enable-help-tooltip t
+                      auto-completion-private-snippets-directory nil)
      better-defaults
      emacs-lisp
      ;; git
@@ -321,6 +330,7 @@ you should place your code here."
   (setq org-plantuml-jar-path
         (expand-file-name "/opt/jar/plantuml/plantuml.jar"))
   (setq plantuml-jar-path org-plantuml-jar-path)
+  (global-company-mode)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -332,7 +342,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (unfill mwim plantuml-mode xelb pangu-spacing find-by-pinyin-dired ace-pinyin pinyinlib blog-admin names ctable xpm org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download htmlize gnuplot popwin powerline spinner parent-mode helm helm-core iedit anzu goto-chg highlight bind-map bind-key packed ## smartparens projectile pkg-info epl popup hydra flx f s dash evil goto-last-change undo-tree diminish async avy wgrep smex ivy-hydra counsel-projectile counsel swiper ivy ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
+    (fuzzy company-statistics company-quickhelp pos-tip company auto-yasnippet ac-ispell auto-complete yasnippet unfill mwim plantuml-mode xelb pangu-spacing find-by-pinyin-dired ace-pinyin pinyinlib blog-admin names ctable xpm org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download htmlize gnuplot popwin powerline spinner parent-mode helm helm-core iedit anzu goto-chg highlight bind-map bind-key packed ## smartparens projectile pkg-info epl popup hydra flx f s dash evil goto-last-change undo-tree diminish async avy wgrep smex ivy-hydra counsel-projectile counsel swiper ivy ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
