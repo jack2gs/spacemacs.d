@@ -59,16 +59,16 @@ values."
      common-lisp
      ;; git
      ;; markdown
-     ; org
+     ;; org
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
      ;; spell-checking
      ;; syntax-checking
      ;; version-control
-     ;; plantuml
-     ;; melon-osx
-     ;; melon-blog
+      plantuml
+      melon-osx
+      melon-blog
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -279,7 +279,7 @@ values."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers t
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
@@ -334,22 +334,28 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  ;; path to plantuml
-  ; (setq org-plantuml-jar-path
-  ;      (expand-file-name "/opt/jar/plantuml/plantuml.jar"))
-  ; (setq plantuml-jar-path org-plantuml-jar-path)
-  ; (global-company-mode)
+  ;; plantuml settings
+   (setq org-plantuml-jar-path
+        (expand-file-name "/opt/jar/plantuml/plantuml.jar")) ;; path to plantuml
+  (setq plantuml-jar-path org-plantuml-jar-path)
+  (global-company-mode)
   (global-visual-line-mode t)
-  ;; (setq-default indent-tabs-mode nil)
-  ;; (setq-default tab-width 4)
+  (setq-default indent-tabs-mode nil)
+  (setq-default tab-width 4)
+
   ;; sbcl settings
   (setq inferior-lisp-program "/usr/local/bin/sbcl")
   ;; all the icons config
   (setq inhibit-compacting-font-caches t) ; to speedup icons rendering 
+
   ;; neotree settings
   (setq neo-theme 'icons)
   (global-set-key [f8] 'neotree-toggle)
-  (setq neo-window-position 'right) ; put the neotree window to right
+  ;; there's something wrong here, SPC 0 is not noetree window anymore
+  ;; (setq neo-window-position 'right) ; put the neotree window to right
+  (setq neo-show-hidden-files nil)
+  (setq neo-smart-open t)
+  (setq projectile-switch-project-action 'neotree-projectile-action)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
