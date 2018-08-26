@@ -25,7 +25,7 @@
       (melon-osx/set-default-font))
   )
 
-;; disable terminal theme
+;;; disable terminal theme
 (defun melon-osx/on-after-init ()
   "Disable terminal theme."
   (unless (display-graphic-p (selected-frame))

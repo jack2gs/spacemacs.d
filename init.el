@@ -36,7 +36,14 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     ivy
+     helm
+     neotree
+     ;; (markdown :variables markdown-live-preview-engine 'vmd)
+     ;; javascript
+     ;; html
+     ;; python
+     ;; yaml
+     ;; ivy
      ;; auto-completion
      (auto-completion :variables
                       auto-completion-return-key-behavior 'complete
@@ -47,26 +54,27 @@ values."
                       auto-completion-enable-sort-by-usage t
                       auto-completion-enable-help-tooltip t
                       auto-completion-private-snippets-directory nil)
-     better-defaults
+     ; better-defaults
      emacs-lisp
+     common-lisp
      ;; git
      ;; markdown
-     org
+     ; org
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
      ;; spell-checking
      ;; syntax-checking
      ;; version-control
-     plantuml
-     melon-osx
-     melon-blog
+     ;; plantuml
+     ;; melon-osx
+     ;; melon-blog
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(all-the-icons)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -102,7 +110,7 @@ values."
    ;; when the current branch is not `develop'. Note that checking for
    ;; new versions works via git commands, thus it calls GitHub services
    ;; whenever you start Emacs. (default nil)
-   dotspacemacs-check-for-update nil
+   dotspacemacs-check-for-update nil 
    ;; If non-nil, a form that evaluates to a package directory. For example, to
    ;; use different package directories for different Emacs versions, set this
    ;; to `emacs-version'.
@@ -239,7 +247,7 @@ values."
    ;; If non nil the frame is maximized when Emacs starts up.
    ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
    ;; (default nil) (Emacs 24.4+ only)
-   dotspacemacs-maximized-at-startup nil
+   dotspacemacs-maximized-at-startup t
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's active or selected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
@@ -327,10 +335,21 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   ;; path to plantuml
-  (setq org-plantuml-jar-path
-        (expand-file-name "/opt/jar/plantuml/plantuml.jar"))
-  (setq plantuml-jar-path org-plantuml-jar-path)
-  (global-company-mode)
+  ; (setq org-plantuml-jar-path
+  ;      (expand-file-name "/opt/jar/plantuml/plantuml.jar"))
+  ; (setq plantuml-jar-path org-plantuml-jar-path)
+  ; (global-company-mode)
+  (global-visual-line-mode t)
+  ;; (setq-default indent-tabs-mode nil)
+  ;; (setq-default tab-width 4)
+  ;; sbcl settings
+  (setq inferior-lisp-program "/usr/local/bin/sbcl")
+  ;; all the icons config
+  (setq inhibit-compacting-font-caches t) ; to speedup icons rendering 
+  ;; neotree settings
+  (setq neo-theme 'icons)
+  (global-set-key [f8] 'neotree-toggle)
+  (setq neo-window-position 'right) ; put the neotree window to right
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -342,7 +361,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (fuzzy company-statistics company-quickhelp pos-tip company auto-yasnippet ac-ispell auto-complete yasnippet unfill mwim plantuml-mode xelb pangu-spacing find-by-pinyin-dired ace-pinyin pinyinlib blog-admin names ctable xpm org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download htmlize gnuplot popwin powerline spinner parent-mode helm helm-core iedit anzu goto-chg highlight bind-map bind-key packed ## smartparens projectile pkg-info epl popup hydra flx f s dash evil goto-last-change undo-tree diminish async avy wgrep smex ivy-hydra counsel-projectile counsel swiper ivy ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
+    (all-the-icons memoize helm-company helm-c-yasnippet slime-company slime common-lisp-snippets vmd-mode mmm-mode markdown-toc markdown-mode gh-md web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern tern coffee-mode web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode haml-mode emmet-mode company-web web-completion-data yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode dash-functional cython-mode company-anaconda anaconda-mode pythonic yaml-mode fuzzy company-statistics company-quickhelp pos-tip company auto-yasnippet ac-ispell auto-complete yasnippet unfill mwim plantuml-mode xelb pangu-spacing find-by-pinyin-dired ace-pinyin pinyinlib blog-admin names ctable xpm org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download htmlize gnuplot popwin powerline spinner parent-mode helm helm-core iedit anzu goto-chg highlight bind-map bind-key packed ## smartparens projectile pkg-info epl popup hydra flx f s dash evil goto-last-change undo-tree diminish async avy wgrep smex ivy-hydra counsel-projectile counsel swiper ivy ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
